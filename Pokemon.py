@@ -32,5 +32,5 @@ with open('pokemon-data.csv', mode = 'r') as file:
         pokemon_list.append(pokemon)
 
 for pokemon in pokemon_list:
-    print(f"{pokemon.name}, {pokemon.type}, HP: {pokemon.hp}, Attack: {pokemon.attack}, Defense: {pokemon.defense}, Moves: {pokemon.moves}")
+    print(f"Name: {pokemon.name}, Type: {pokemon.type}, HP: {pokemon.hp}, Attack: {pokemon.attack}, Defense: {pokemon.defense}, Moves: {pokemon.moves}")
     print("\n\n\n")
