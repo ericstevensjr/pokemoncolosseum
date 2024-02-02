@@ -1,5 +1,6 @@
 import csv
 
+# Dictionary for use when looking up moves for Pokemon
 moves_dict = {}
 
 class Move:
@@ -8,6 +9,7 @@ class Move:
         self.type = type
         self.power = power
 
+# Parsing CSV file
 with open('moves-data.csv', mode = 'r') as file:
     reader = csv.reader(file)
     # Skipping header row
@@ -20,5 +22,5 @@ with open('moves-data.csv', mode = 'r') as file:
         )
         moves_dict[move.name] = move
 
-for move_name, move in moves_dict.items():
-    print(f"Name: {move.name}, Type: {move.type}, Power: {move.power}")
+#for move_name, move in moves_dict.items():
+#    print(f"Name: {move.name}, Type: {move.type}, Power: {move.power}")

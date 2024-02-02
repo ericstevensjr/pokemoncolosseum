@@ -10,6 +10,7 @@ class Pokemon:
         self.defense = defense
         self.moves = []
 
+    # Function to add moves to individual pokemon based on move list
     def add_move(self, move):
         self.moves.append(move)
 
@@ -40,8 +41,8 @@ with open('pokemon-data.csv', mode = 'r') as file:
                 pokemon.add_move(moves_dict[move_name])
         pokemon_list.append(pokemon)
 
-for pokemon in pokemon_list:
-    print(f"Name: {pokemon.name}, Type: {pokemon.type}, HP: {pokemon.hp}, Attack: {pokemon.attack}, Defense: {pokemon.defense}")
-    for move in pokemon.moves:
-        print(f"Move: {move.name}, Type: {move.type}, Power: {move.power}")
-    print("\n\n\n")
+# for pokemon in pokemon_list:
+#    print(f"Name: {pokemon.name}, Type: {pokemon.type}, HP: {pokemon.hp}, Attack: {pokemon.attack}, Defense: {pokemon.defense}")
+#    for move in pokemon.moves:
+#        print(f"Move: {move.name}, Type: {move.type}, Power: {move.power}")
+#    print("\n\n\n")
