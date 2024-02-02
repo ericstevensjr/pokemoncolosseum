@@ -13,5 +13,7 @@ teamRocket = Team("Team Rocket")
 teamRocket.assign_pokemon(pokemon_list)
 teamRocket.print_team()
 
-
-
+# Coin toss to determine who goes first
+firstTeam = random.choice([playerTeam.name, teamRocket.name])
+currentMove = firstTeam
+print("First up is: " + currentMove)
