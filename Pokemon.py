@@ -8,11 +8,17 @@ class Pokemon:
         self.hp = hp
         self.attack = attack
         self.defense = defense
+        self.allMoves = []
         self.moves = []
 
     # Function to add moves to individual pokemon based on move list
     def add_move(self, move):
         self.moves.append(move)
+        self.allMoves.append(move)
+
+    # Function to reset moves when all have been used
+    def resetMoves(self):
+        self.moves = self.allMoves[:]    
 
 # Creating list to store Pokemon
 pokemon_list = []

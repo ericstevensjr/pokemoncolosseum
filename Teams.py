@@ -12,7 +12,7 @@ class Team:
         self.pokemon.extend(pickedPokemon)
         for pokemon in pickedPokemon:
             pokemon_list.remove(pokemon)
-            
+
     def print_team(self):
         print(f"\nTeam Name: {self.name}")
         print(self.name + "'s Pokemon are:\n")
@@ -24,3 +24,15 @@ class Team:
 
     def pokemon_names(self):
         return ', '.join([pokemon.name for pokemon in self.pokemon])
+    
+    def checkHp(self):
+        if self.pokemon.hp <= 0:
+             return False
+        else:
+            return True
+        
+        
+
+    def selectTeamRocketMove(pokemon):
+        if not pokemon.moves:
+            pokemon.resetMoves()

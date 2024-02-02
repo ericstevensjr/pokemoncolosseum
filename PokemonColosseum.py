@@ -29,8 +29,13 @@ print("Coin toss goes to ----- " + currentMove + " to start the attack!")
 gameOver = False
 while gameOver == False:
     if currentMove == playerTeam.name:
+        currentPlayerPokemon = playerTeam.pokemon[0]
+        print(currentPlayerPokemon.name)
+        gameOver = True
         pass
     else:
+        currentRocketPokemon = teamRocket.pokemon[0]
+        gameOver = True
         pass
 
 
