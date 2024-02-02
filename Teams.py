@@ -8,8 +8,11 @@ class Team:
 
     def assign_pokemon(self, pokemon_list):
         # Randomly choose 3 Pokemons from the list
-        self.pokemon = random.sample(pokemon_list, 3)
-
+        pickedPokemon = random.sample(pokemon_list, 3)
+        self.pokemon.extend(pickedPokemon)
+        for pokemon in pickedPokemon:
+            pokemon_list.remove(pokemon)
+            
     def print_team(self):
         print(f"\nTeam Name: {self.name}")
         print(self.name + "'s Pokemon are:\n")
@@ -18,3 +21,6 @@ class Team:
             for move in pokemon.moves:
                 print(f"Move: {move.name}")
             print("\n")
+
+    def pokemon_names(self):
+        return ', '.join([pokemon.name for pokemon in self.pokemon])
