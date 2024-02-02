@@ -1,6 +1,6 @@
 import csv
 
-moves_list = []
+moves_dict = {}
 
 class Move:
     def __init__(self, name, type, power):
@@ -18,9 +18,7 @@ with open('moves-data.csv', mode = 'r') as file:
             type = row[1],
             power = row[5]
         )
-        moves_list.append(move)
+        moves_dict[move.name] = move
 
-for move in moves_list:
+for move_name, move in moves_dict.items():
     print(f"Name: {move.name}, Type: {move.type}, Power: {move.power}")
-    print("\n\n\n")
-
