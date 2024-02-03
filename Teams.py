@@ -31,8 +31,11 @@ class Team:
         else:
             return True
         
-        
 
-    def selectTeamRocketMove(pokemon):
+    def selectTeamRocketMove(self, pokemon):
         if not pokemon.moves:
             pokemon.resetMoves()
+        
+        move = random.choice(pokemon.moves)
+        pokemon.moves.remove(move)
+        return move

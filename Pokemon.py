@@ -36,9 +36,9 @@ with open('pokemon-data.csv', mode = 'r') as file:
         pokemon = Pokemon(
             name = row[0],
             type = row[1],
-            hp = row[2],
-            attack = row[3],
-            defense = row[4],
+            hp = int(row[2]),
+            attack = int(row[3]),
+            defense = int(row[4]),
             moves = []
         )
         # Importing moves to link to individual Pokemon
