@@ -33,24 +33,42 @@ while gameOver == False:
     currentPlayerPokemon = playerTeam.pokemon[0]
     currentRocketPokemon = teamRocket.pokemon[0]
     if currentMove == playerTeam.name:
-        # Menu to choose move for player POKE
-        # Print choice "Team Player's choice: X"
-        # SAME CAST PRINT STATEMENT AS TEAM ROCKET WHEN CHOSEN
-        # Damage calculation
-        # Print "Now ROCKETPOKE had XX HP, and TEAMPOKE has XX HP."
-        # If HP for one of the pokemon falls below 0, then say "POKE faints back to poke ball"
-        gameOver = True
+        print(f"{currentPlayerPokemon.name}'s available moves:")
+        for i, move in enumerate(currentPlayerPokemon.moves, start = 1):
+            print(f"{i}. {move.name}")
+        moveSelection = int(input("Choose your move: ")) - 1
+        selectedMove = currentPlayerPokemon.moves[moveSelection]
+        damageNum = damage(selectedMove, currentPlayerPokemon, currentRocketPokemon)
+        print(f"{playerTeam.name}'s {currentPlayerPokemon.name} cast '{selectedMove.name}' to {currentRocketPokemon.name}")
+        print(f"Damage to {currentRocketPokemon.name} is {damageNum} points.")
+        currentRocketPokemon.hp = currentRocketPokemon.hp - damageNum
+        if currentRocketPokemon.checkHp() is False:
+            print(f"Now {currentRocketPokemon.name} faints back to poke ball., and {currentPlayerPokemon.name} has {currentPlayerPokemon.hp} HP.")
+            teamRocket.pokemon.pop(0)
+            if not teamRocket.pokemon:
+                print(f"All of Team Rocket's Pokemon fainted, and {playerTeam.name} prevails!")
+                gameOver = True
+            else: 
+                print(f"Now {currentRocketPokemon.name} has {currentRocketPokemon.hp} HP, and {currentPlayerPokemon.name} has {currentPlayerPokemon.hp} HP")
+        currentMove = teamRocket.name
         pass
+
     else:
         selectedMove = teamRocket.selectTeamRocketMove(currentRocketPokemon)
         damageNum = damage(selectedMove, currentRocketPokemon, currentPlayerPokemon)
         print(f"Team Rocket's {currentRocketPokemon.name} cast '{selectedMove.name}' to {currentPlayerPokemon.name}")
         print(f"Damage to {currentPlayerPokemon.name} is {damageNum} points.")
-        # Print "Damage to POKEMON is XX Points"
-        # Calculate HP
-        # Print "Now ROCKETPOKE had XX HP, and TEAMPOKE has XX HP."
-        # If HP for one of the pokemon falls below 0, then say "POKE faints back to poke ball"
-        gameOver = True
+        currentPlayerPokemon.hp = currentPlayerPokemon.hp - damageNum
+        if currentPlayerPokemon.checkHp() is False:
+            print(f"Now {currentRocketPokemon.name} has {currentRocketPokemon.hp} HP, and {currentPlayerPokemon.name} faints back to poke ball.")
+            playerTeam.pokemon.pop(0)
+            if not playerTeam.pokemon:
+                print(f"All of Team {playerTeam.name}'s Pokemon fainted, and Team Rocket prevails!")
+                gameOver = True
+        else: 
+            print(f"Now {currentRocketPokemon.name} has {currentRocketPokemon.hp} HP, and {currentPlayerPokemon.name} has {currentPlayerPokemon.hp} HP")
+
+        currentMove = playerTeam.name
         pass
 
 

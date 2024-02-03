@@ -18,7 +18,13 @@ class Pokemon:
 
     # Function to reset moves when all have been used
     def resetMoves(self):
-        self.moves = self.allMoves[:]    
+        self.moves = self.allMoves[:] 
+
+    def checkHp(self):
+        if self.hp <= 0:
+             return False
+        else:
+            return True   
 
 # Creating list to store Pokemon
 pokemon_list = []
