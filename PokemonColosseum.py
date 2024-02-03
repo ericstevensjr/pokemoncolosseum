@@ -29,7 +29,7 @@ print("Coin toss goes to ----- " + currentMove + " to start the attack!")
 
 # Battle implementation
 gameOver = False
-while gameOver == False:
+while gameOver is False:
     currentPlayerPokemon = playerTeam.pokemon[0]
     currentRocketPokemon = teamRocket.pokemon[0]
 
@@ -95,5 +95,3 @@ while gameOver == False:
 
         currentMove = playerTeam.name
         pass
-
-
