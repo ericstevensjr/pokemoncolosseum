@@ -1,15 +1,20 @@
 import random
 import math
 
+# Function that calculates the Pokemons move's damage. 
 def damage(selectedMove, pokemonA, pokemonB):
     stabVal = stab(selectedMove, pokemonB)
     typeEffVal = typeEffeciency(selectedMove, pokemonB)
     randomInt = random.uniform(0.5, 1)
+    
     damageCount = (float(selectedMove.power)) * ((float(pokemonA.attack) / (float(pokemonB.defense))) 
                                                  * stabVal * typeEffVal * randomInt)
     damageCount = math.ceil(damageCount)
+    
     return damageCount    
 
+# Function that calculates the Type Efficiency of the Pokemon's move.
+# Not my favorite way to implement, but it works and it's all I could think of in the moment
 def typeEffeciency(move, pokemon):
     match (move.type, pokemon.type):
         case ("Normal", "Normal"):
@@ -65,6 +70,7 @@ def typeEffeciency(move, pokemon):
         case _:
             return 1
 
+# Calcualting the Same Type Attack Bonus that is outlined in the PDF
 def stab(moveA, pokemon2):
     if moveA.type == pokemon2.type:
         return 1.5

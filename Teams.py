@@ -1,19 +1,21 @@
 import random
-from Pokemon import pokemon_list
+from Pokemon import pokemonList
 
 class Team:
     def __init__(self, name):
         self.name = name
         self.pokemon = []
 
-    def assign_pokemon(self, pokemon_list):
+    # Method to assign Pokemon to a team
+    def assignPokemon(self, pokemonList):
         # Randomly choose 3 Pokemons from the list
-        pickedPokemon = random.sample(pokemon_list, 3)
+        pickedPokemon = random.sample(pokemonList, 3)
         self.pokemon.extend(pickedPokemon)
         for pokemon in pickedPokemon:
-            pokemon_list.remove(pokemon)
+            pokemonList.remove(pokemon)
 
-    def print_team(self):
+    # Method created to make sure I was correctly parsing CSV
+    def printTeam(self):
         print(f"\nTeam Name: {self.name}")
         print(self.name + "'s Pokemon are:\n")
         for pokemon in self.pokemon:
@@ -22,20 +24,16 @@ class Team:
                 print(f"Move: {move.name}")
             print("\n")
 
-    def pokemon_names(self):
+    # Method to display the Pokemon's name on a team.
+    def pokemonNames(self):
         return ', '.join([pokemon.name for pokemon in self.pokemon])
-    
-    def checkHp(self):
-        if self.pokemon.hp <= 0:
-             return False
-        else:
-            return True
         
-
-    def selectTeamRocketMove(self, pokemon):
+    # Method to randomly choose a move based on Team Rocket's Pokemons.
+    def selectTeamRocketMove(self,pokemon):
+        # Resetting their move list if they need it
         if not pokemon.moves:
             pokemon.resetMoves()
-        
+        # Choosing and returning a random move.
         move = random.choice(pokemon.moves)
         pokemon.moves.remove(move)
         return move

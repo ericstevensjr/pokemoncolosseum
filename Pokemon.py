@@ -1,5 +1,5 @@
 import csv
-from Moves import moves_dict
+from Moves import movesDict
 
 class Pokemon:
     def __init__(self, name, type, hp, attack, defense, moves):
@@ -11,23 +11,24 @@ class Pokemon:
         self.allMoves = []
         self.moves = []
 
-    # Function to add moves to individual pokemon based on move list
-    def add_move(self, move):
+    # Method to add moves to individual pokemon based on move list
+    def addMove(self, move):
         self.moves.append(move)
         self.allMoves.append(move)
 
-    # Function to reset moves when all have been used
+    # Method to reset moves when all have been used
     def resetMoves(self):
         self.moves = self.allMoves[:] 
 
+    # Method used to check health points for a Pokemon during battle.
     def checkHp(self):
         if self.hp <= 0:
              return False
         else:
             return True   
 
-# Creating list to store Pokemon
-pokemon_list = []
+# Creating list to store Pokemon from CSV
+pokemonList = []
 
 # Parsing the CSV file
 with open('pokemon-data.csv', mode = 'r') as file:
@@ -38,7 +39,7 @@ with open('pokemon-data.csv', mode = 'r') as file:
 
     # Iterating through the file for Pokemon
     for row in reader:
-        pokemon_moves_names = row[7].strip("[]").replace("'", "").split(", ")
+        pokemonMovesNames = row[7].strip("[]").replace("'", "").split(", ")
         pokemon = Pokemon(
             name = row[0],
             type = row[1],
@@ -47,14 +48,12 @@ with open('pokemon-data.csv', mode = 'r') as file:
             defense = int(row[4]),
             moves = []
         )
-        # Importing moves to link to individual Pokemon
-        for move_name in pokemon_moves_names:
-            if move_name in moves_dict:
-                pokemon.add_move(moves_dict[move_name])
-        pokemon_list.append(pokemon)
 
-# for pokemon in pokemon_list:
-#    print(f"Name: {pokemon.name}, Type: {pokemon.type}, HP: {pokemon.hp}, Attack: {pokemon.attack}, Defense: {pokemon.defense}")
-#    for move in pokemon.moves:
-#        print(f"Move: {move.name}, Type: {move.type}, Power: {move.power}")
-#    print("\n\n\n")
+        # Importing moves to link to individual Pokemon
+        # I was confused on if this was better done in the Moves class, or this one. I left it here.
+        for moveName in pokemonMovesNames:
+            if moveName in movesDict:
+                pokemon.addMove(movesDict[moveName])
+        
+        # Adding pokemon to main list
+        pokemonList.append(pokemon)
