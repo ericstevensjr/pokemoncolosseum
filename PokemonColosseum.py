@@ -40,9 +40,19 @@ while gameOver == False:
 
         print("\n")
 
-        moveSelection = int(input()) - 1
+        validMoveSelection = False
+        while not validMoveSelection:
+            try:
+                moveSelection = int(input()) - 1
+                if 0 <= moveSelection < len(currentPlayerPokemon.moves):
+                    selectedMove = currentPlayerPokemon.moves.pop(moveSelection)
+                    validMoveSelection = True
+                else:
+                    print("Please enter a number that corresponds to an available move.")
+            except ValueError:
+                print("Please enter a number that corresponds to an available move.")
+        
         print(f"\n{playerTeam.name}'s choice: {(moveSelection + 1)}\n")
-        selectedMove = currentPlayerPokemon.moves.pop(moveSelection)
         if not currentPlayerPokemon.moves:
             currentPlayerPokemon.resetMoves()
 
